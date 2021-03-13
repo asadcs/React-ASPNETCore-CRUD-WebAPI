@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -10,10 +11,26 @@ namespace React_ASPNETCore_CRUD_WebAPI.Controllers
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
+        public HttpResponseMessage Get()
         {
-            return new string[] { "value1", "value2" };
+            DataTable dt = new DataTable();
+            dt.Columns.Add("DeptID");
+            dt.Columns.Add("DeptName");
+
+
+            dt.Rows.Add("1", "MIS");
+            dt.Rows.Add("2", "Software");
+
+            return Request.CreateResponse(HttpStatusCode.OK, dt);
+
+            //return new string[] { "value1", "value2" };
         }
+
+
 
         // GET api/values/5
         public string Get(int id)
