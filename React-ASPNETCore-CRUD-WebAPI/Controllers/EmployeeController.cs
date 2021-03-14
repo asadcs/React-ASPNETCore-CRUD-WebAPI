@@ -71,12 +71,36 @@ namespace React_ASPNETCore_CRUD_WebAPI.Controllers
                     da.Fill(dt);
                 }
 
-                return "Added successfully";
+                return "Updated successfully";
             }
             catch (Exception)
             {
 
-                return "Failed To Add";
+                return "Failed To Update";
+            }
+        }
+        public string DELETE(int id)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+
+                string query = @"delete from Employees where EmployeeID =" + id;
+
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EmployeeAppDB"].ConnectionString))
+                using (var command = new SqlCommand(query, conn))
+                using (var da = new SqlDataAdapter(command))
+                {
+                    command.CommandType = CommandType.Text;
+                    da.Fill(dt);
+                }
+
+                return "Deleted successfully";
+            }
+            catch (Exception)
+            {
+
+                return "Failed To Delete";
             }
         }
     }
