@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Web.Http.Cors;
 
 namespace React_ASPNETCore_CRUD_WebAPI
 {
@@ -24,6 +25,8 @@ namespace React_ASPNETCore_CRUD_WebAPI
             //Force Web API to send JSON response
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+
+            config.EnableCors(new EnableCorsAttribute("http://localhost:3000","*","*"));
         }
     }
 }
